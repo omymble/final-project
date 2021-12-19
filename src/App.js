@@ -10,7 +10,7 @@ import Caught from "./Pages/Caught/Caught";
 import './App.css';
 import Home from "./Pages/Home/Home";
 import Context from "./context";
-import {getPokeId, catchOrRelease} from "./API/parsePokes";
+import {getPokeId, catchOrRelease} from "./API/pokeFunctions";
 import {useState} from "react";
 
 function App() {

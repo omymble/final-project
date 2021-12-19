@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import CardList from "../../Components/CardList/CardList";
-import {getPokeId} from "../../API/parsePokes";
-import {catchOrRelease} from "../../API/parsePokes";
+import {getPokeId} from "../../API/pokeFunctions";
+import {catchOrRelease} from "../../API/pokeFunctions";
 import Loader from "../../Components/Loader/Loader";
 import Context from "../../context";
 
@@ -16,18 +16,18 @@ function Home() {
         // {name:"char",url:"https://pokeapi.co/api/v2/pokemon/6/"},
         // {name:"squi",url:"https://pokeapi.co/api/v2/pokemon/7/"}
     ])
-    const [loading, setLoading] = useState(true)
+    // const [loading, setLoading] = useState(true)
 
-    useEffect(() => {
+/*    useEffect(() => {
         fetch('https://pokeapi.co/api/v2/pokemon')
             .then(response => response.json())
             .then(myPokes => {
                 setMyPokes(myPokes.results)
                 setLoading(false)
             })
-    }, [])
+    }, [])*/
 
-    function catchPokeHome(id) {
+/*    function catchPokeHome(id) {
         setMyPokes(myPokes.map(poke => {
             if (getPokeId(poke) === id) {
                 catchOrRelease(poke)
@@ -37,19 +37,20 @@ function Home() {
     }
     function infoAboutPoke(id) {
         console.log(`info about poke No. ${id}`)
-    }
+    }*/
 
     return (
-        <Context.Provider value={{catchPokeHome}}>
-            <h1>homepage</h1>
+        // <Context.Provider value={{catchOrRelease}}>
+            <CardList/>
+/*            {/!*<h1>homepage</h1>
             {loading && <Loader/>}
             {myPokes.length ? (
                 <CardList pokes={myPokes}/>
             ) : loading ? null : (
                 <p>No pokes :(</p>
-            )}
+            )}*!/}*/
 
-        </Context.Provider>
+        // </Context.Provider>
     )
 }
 

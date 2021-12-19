@@ -1,11 +1,12 @@
 import {useContext} from "react";
 import PropTypes from "prop-types";
 import {Button, Card} from "react-bootstrap";
-import {getPokeId} from "../../API/parsePokes";
+import {getPokeId} from "../../API/pokeFunctions";
 import Context from "../../context";
 
 function PokeCard(props) {
-    const {catchPokeHome} = useContext(Context)
+    // const {onClickCatchButton} = useContext(Context)
+    // const {infoAboutPoke} = useContext(Context)
     console.log('PokeCard', props.poke)
     return (
         <Card border="primary" style={{ width: '18rem' }}>
@@ -15,7 +16,10 @@ function PokeCard(props) {
                 <Card.Text>{getPokeId(props.poke)}</Card.Text>
                 <Button
                     variant="primary"
-                    onClick={() => catchPokeHome(getPokeId(props.poke))}
+                    onClick={() => {
+                        console.log('CATCH', props.poke)
+                        props.onClickCatchButton(getPokeId(props.poke))
+                    }}
                 >
                     {(props.poke.isCaught) ? 'Release' : 'Catch'}
                 </Button>
@@ -34,7 +38,7 @@ function PokeCard(props) {
 PokeCard.propTypes = {
     poke: PropTypes.object.isRequired,
     index: PropTypes.number,
-    // onClick: PropTypes.func.isRequired
+    onClickCatchButton: PropTypes.func.isRequired
 }
 
 export default PokeCard
