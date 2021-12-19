@@ -23,7 +23,6 @@ function CardList(props) {
                         poke={poke}
                         key={getPokeId(poke)}
                         index={index}
-                        // onClick={props.onCatchPoke}
                     />)
             })}
         </ul>
@@ -31,8 +30,7 @@ function CardList(props) {
 }
 
 CardList.propTypes = {
-    pokes: PropTypes.arrayOf(PropTypes.object).isRequired,
-    // onCatchPoke: PropTypes.func.isRequired
+    pokes: PropTypes.arrayOf(PropTypes.object).isRequired
 }
 
 export default CardList

@@ -2,7 +2,8 @@ import {useNavigate, useParams} from "react-router";
 
 const Profile = () => {
     let navigate = useNavigate()
-    let {id} = useParams()
+    const {id} = useParams()
+    console.log(id)
     return (
         <div>
             <h1>pokemon's profile No. {id}</h1>

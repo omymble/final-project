@@ -5,7 +5,7 @@ import {getPokeId} from "../../API/parsePokes";
 import Context from "../../context";
 
 function PokeCard(props) {
-    const {catchPokeInList} = useContext(Context)
+    const {catchPokeHome} = useContext(Context)
     console.log('PokeCard', props.poke)
     return (
         <Card border="primary" style={{ width: '18rem' }}>
@@ -15,9 +15,16 @@ function PokeCard(props) {
                 <Card.Text>{getPokeId(props.poke)}</Card.Text>
                 <Button
                     variant="primary"
-                    onClick={() => catchPokeInList(getPokeId(props.poke))}
+                    onClick={() => catchPokeHome(getPokeId(props.poke))}
                 >
                     {(props.poke.isCaught) ? 'Release' : 'Catch'}
+                </Button>
+                <Button
+                    href='/profile/:'
+                    variant="primary"
+                    onClick={() => console.log(`info about ${getPokeId(props.poke)}`)}
+                >
+                    info
                 </Button>
             </Card.Body>
         </Card>
