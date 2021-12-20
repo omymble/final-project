@@ -1,12 +1,11 @@
 import {useContext} from "react";
+import {Link} from "react-router-dom";
 import PropTypes from "prop-types";
 import {Button, Card} from "react-bootstrap";
 import {getPokeId} from "../../API/pokeFunctions";
 import Context from "../../context";
 
 function PokeCard(props) {
-    // const {onClickCatchButton} = useContext(Context)
-    // const {infoAboutPoke} = useContext(Context)
     console.log('PokeCard', props.poke)
     return (
         <Card border="primary" style={{ width: '18rem' }}>
@@ -24,11 +23,14 @@ function PokeCard(props) {
                     {(props.poke.isCaught) ? 'Release' : 'Catch'}
                 </Button>
                 <Button
-                    href='/profile/:'
+                    as={Link}
+                    to={`/profile/${getPokeId(props.poke)}`}
                     variant="primary"
-                    onClick={() => console.log(`info about ${getPokeId(props.poke)}`)}
+                    onClick={() => {
+                        console.log('INFO ABOUT', props.poke.name, props.poke.isCaught)
+                    }}
                 >
-                    info
+                    Info
                 </Button>
             </Card.Body>
         </Card>

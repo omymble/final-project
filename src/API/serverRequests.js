@@ -1,10 +1,6 @@
-function getPokePortion() {
-    return fetch('https://pokeapi.co/api/v2/pokemon')
+function getPokePortion(offset, limit) {
+    return fetch(`https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${limit}`)
         .then(response => response.json())
-        /*.then(myPokes => {
-            setMyPokes(myPokes.results)
-            setLoading(false)
-        })*/
 }
 
 function getPokeInfo(pokeId) {

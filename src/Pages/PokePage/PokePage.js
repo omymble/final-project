@@ -1,21 +1,53 @@
 import {useNavigate, useParams} from "react-router";
+import ProfileCard from "../../Components/ProfileCard/ProfileCard";
+import {useEffect, useState} from "react";
+import {getPokeInfo} from "../../API/serverRequests";
+import Loader from "../../Components/Loader/Loader";
 
-const Profile = () => {
+const PokePage = () => {
     let navigate = useNavigate()
     const {id} = useParams()
-    console.log(id)
+    console.log('Poke page', id)
+
+    const [poke, setPoke] = useState(null)
+    const [loading, setLoading] = useState(true)
+
+    useEffect(() => {
+        getPokeInfo(id)
+            .then(poke => {
+                setPoke(poke)
+                setLoading(false)
+            })
+            .catch(err => console.log('Error GetPokeInfo'))
+    }, [])
+    console.log('Got poke PokePage', poke)
     return (
-        <div>
+        <>
             <h1>pokemon's profile No. {id}</h1>
-            <button
-                onClick={() => {
-                    navigate("/")
-                }}
-            >
-                Close
-            </button>
-        </div>
+            {loading && <Loader/>}
+            {poke ? (
+                <>
+                    <ProfileCard
+                        pokeId={parseInt(id)}
+                        // name = {}
+                        poke={poke}
+                        // key={getPokeId(poke)}
+                        // index={index}
+                        // onClickCatchButton={onClickCatchButton}
+                    />
+                    <button
+                        onClick={() => {
+                            navigate("/")
+                        }}
+                    >
+                        Go home
+                    </button>
+                </>
+            ) : loading ? null : (
+                <p>no such poke</p>
+            )}
+        </>
     )
 }
 
-export default Profile;
+export default PokePage;
