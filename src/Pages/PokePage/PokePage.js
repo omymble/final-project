@@ -3,12 +3,12 @@ import ProfileCard from "../../Components/ProfileCard/ProfileCard";
 import {useEffect, useState} from "react";
 import {getPokeInfo} from "../../API/serverRequests";
 import Loader from "../../Components/Loader/Loader";
+import {Button} from "react-bootstrap";
+import './PokePage.css'
 
 const PokePage = () => {
     let navigate = useNavigate()
     const {id} = useParams()
-    console.log('Poke page', id)
-
     const [poke, setPoke] = useState(null)
     const [loading, setLoading] = useState(true)
 
@@ -20,29 +20,25 @@ const PokePage = () => {
             })
             .catch(err => console.log('Error GetPokeInfo'))
     }, [])
-    console.log('Got poke PokePage', poke)
+
     return (
         <>
-            <h1>pokemon's profile No. {id}</h1>
             {loading && <Loader/>}
             {poke ? (
-                <>
+                <div className={"container PokePage-container"}>
                     <ProfileCard
                         pokeId={parseInt(id)}
-                        // name = {}
                         poke={poke}
-                        // key={getPokeId(poke)}
-                        // index={index}
-                        // onClickCatchButton={onClickCatchButton}
                     />
-                    <button
-                        onClick={() => {
-                            navigate("/")
-                        }}
+                    <Button
+                        variant="secondary"
+                        size={"lg"}
+                        className={""}
+                        onClick={() => {navigate("/")}}
                     >
                         Go home
-                    </button>
-                </>
+                    </Button>
+                </div>
             ) : loading ? null : (
                 <p>no such poke</p>
             )}

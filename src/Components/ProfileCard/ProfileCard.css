@@ -1,0 +1,51 @@
+.container {
+    width: 1200px;
+}
+
+.profile-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 20px auto;
+}
+.profile-title {
+    font-style: italic;
+}
+
+.poke-info {
+    margin: 30px auto;
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.poke-image {
+    width: 400px
+}
+
+@media (min-width: 320px) and (max-width: 767px) {
+    .container {
+        width:  280px
+    }
+    .poke-info {
+        margin: 50px auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        width: 100%;
+    }
+    .poke-info > * {
+        margin: 10px auto;
+    }
+    .poke-image {
+        width: 300px
+    }
+}
+@media (min-width: 768px) and (max-width: 1279px) {
+    .container{
+        width: 700px
+    }
+}
+
+

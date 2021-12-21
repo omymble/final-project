@@ -1,12 +1,10 @@
-import PropTypes from 'prop-types'
-
-import PokeCard from "../Card/PokeCard";
 import React, {useState, useEffect} from "react";
+import PokeCard from "../Card/PokeCard";
 import {getPokeId, catchOrRelease} from "../../API/pokeFunctions";
 import {getPokePortion} from "../../API/serverRequests";
-import {Button, Grid, Row, Col} from "react-bootstrap";
+import {Button} from "react-bootstrap";
 import Loader from "../Loader/Loader";
-
+import './CardList.css'
 
 function CardList() {
     const [pokes, setPokes] = useState([])
@@ -39,10 +37,9 @@ function CardList() {
 
     return (
         <>
-            <h1>pokelist</h1>
             {loading && <Loader/>}
             {pokes.length ? (
-                <>
+                <div className={"list-container"}>
                     <ul>
                         {pokes.map((poke, index) => {
                             poke.isCaught = localStorage.hasOwnProperty(getPokeId(poke).toString());
@@ -57,11 +54,12 @@ function CardList() {
                     </ul>
                     <Button
                         onClick={onClickLoadingButton}
-                        variant="secondary"
+                        variant="primary"
+                        size={"lg"}
                     >
-                        Load more
+                        {loading ? 'Loading...' : 'Load more'}
                     </Button>
-                </>
+                </div>
             ) : loading ? null : (
                 <p>No pokes :(</p>
             )}

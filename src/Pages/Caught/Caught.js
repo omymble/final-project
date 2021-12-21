@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from "react";
 import {caughtPokes} from "../../API/storageFunctions";
 import {catchOrRelease, getPokeId} from "../../API/pokeFunctions";
-import {getPokePortion} from "../../API/serverRequests";
 import PokeCard from "../../Components/Card/PokeCard";
+import './Caught.css'
 
 function Caught() {
     const [pokes, setPokes] = useState([])
@@ -10,6 +10,7 @@ function Caught() {
 
     useEffect(() => {
         setPokes(caughtPokes())
+        setLoading(false)
     }, [])
 
     function onClickCatchButton(id) {
@@ -25,20 +26,20 @@ function Caught() {
 
     return (
         <>
-            <h1>caught pokemons</h1>
             {pokes.length ? (
-                <ul>
-                    {pokes.map((poke, index) => {
-                        // poke.isCaught = localStorage.hasOwnProperty(getPokeId(poke).toString());
-                        return (
-                            <PokeCard
-                                poke={poke}
-                                key={getPokeId(poke)}
-                                index={index}
-                                onClickCatchButton={onClickCatchButton}
-                            />)
-                    })}
-                </ul>
+                <div className={"list-container"}>
+                    <ul>
+                        {pokes.map((poke, index) => {
+                            return (
+                                <PokeCard
+                                    poke={poke}
+                                    key={getPokeId(poke)}
+                                    index={index}
+                                    onClickCatchButton={onClickCatchButton}
+                                />)
+                        })}
+                    </ul>
+                </div>
             ) : loading ? null : (
                 <p>No pokes :(</p>
             )}

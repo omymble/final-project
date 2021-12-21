@@ -1,0 +1,31 @@
+.list-container {
+    width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.list-container > ul {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+@media (min-width: 320px) and (max-width: 767px) {
+    .list-container {
+        width:  280px;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1279px) {
+    .list-container{
+        width: 700px;
+    }
+}
+
+
+
+
+
+
+
